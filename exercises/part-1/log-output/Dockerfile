@@ -17,6 +17,9 @@ FROM node:22-bookworm-slim
 
 WORKDIR /usr/src/app
 
+COPY --from=build-stage /usr/src/app/package*.json ./
+RUN npm ci
+
 COPY --from=build-stage /usr/src/app/build ./
 
 RUN useradd -m appuser && \
