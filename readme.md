@@ -5,4 +5,4 @@
 [Course Website](https://courses.mooc.fi/org/uh-cs/courses/devops-with-kubernetes) 
 
 ### Chapter 1
-- [1.1]
+- [0.1](https://github.com/ronaldyonggi/devopswithkubernetes/tree/0.1)
