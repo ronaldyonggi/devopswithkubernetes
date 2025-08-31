@@ -3,3 +3,6 @@
 > This repository contain my solutions for the exercises in the "DevOps with Kubernetes" course from the University of Helsinki
 
 [Course Website](https://courses.mooc.fi/org/uh-cs/courses/devops-with-kubernetes) 
+
+### Chapter 1
+- [1.1]
