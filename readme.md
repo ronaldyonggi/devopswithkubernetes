@@ -9,3 +9,4 @@
 
 ### Chapter 2
 - [1.1](https://github.com/ronaldyonggi/devopswithkubernetes/tree/1.1)
+- [1.2](https://github.com/ronaldyonggi/devopswithkubernetes/tree/1.2)
