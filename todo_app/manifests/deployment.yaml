@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: todo-app
-        image: yonggsnap/todo-app:1.1
+        image: yonggsnap/todo-app:1.2
         env:
         - name: PORT
           value: "8080"
