@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: log-output-dep 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: log-output
+  template:
+    metadata:
+      labels:
+        app: log-output
+    spec:
+      containers:
+      - name: writer-container
+        image: yonggsnap/writer-log-output:1.1
+        volumeMounts:
+        - name: log-volume
+          mountPath: /usr/src/app/files
+      - name: reader-container
+        image: yonggsnap/reader-log-output:1.1
+        volumeMounts:
+        - name: log-volume
+          mountPath: /usr/src/app/files
+        env:
+        - name: PORT
+          value: "3001"
+      volumes:
+      - name: log-volume
+        emptyDir: {}

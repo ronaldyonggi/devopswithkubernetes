@@ -1,0 +1,14 @@
+{
+  "name": "reader-log-output",
+  "version": "1.0.0",
+  "description": "Reader for log output application",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
