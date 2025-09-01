@@ -14,4 +14,7 @@ spec:
     spec:
       containers:
       - name: log-output
-        image: yonggsnap/log-output:1.1 
+        image: yonggsnap/log-output:2.0
+        env:
+        - name: PORT
+          value: "3001"
