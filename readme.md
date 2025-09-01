@@ -6,3 +6,6 @@
 
 ### Chapter 1
 - [0.1](https://github.com/ronaldyonggi/devopswithkubernetes/tree/0.1)
+
+### Chapter 2
+- [1.1](https://github.com/ronaldyonggi/devopswithkubernetes/tree/1.1)
