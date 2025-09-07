@@ -12,6 +12,13 @@ spec:
       labels:
         app: ping-pong
     spec:
+      volumes:
+      - name: log-storage
+        persistentVolumeClaim:
+          claimName: shared-log-pvc
       containers:
       - name: ping-pong
-        image: yonggsnap/ping-pong:1.1
+        image: yonggsnap/ping-pong:1.3
+        volumeMounts:
+        - name: log-storage
+          mountPath: /usr/src/app/files
