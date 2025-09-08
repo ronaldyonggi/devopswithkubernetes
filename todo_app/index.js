@@ -13,6 +13,9 @@ const TEN_MINUTES_IN_MS = 10 * 60 * 1000;
 // Ensure the cache directory exists when the app starts
 fs.mkdirSync(CACHE_DIR, { recursive: true });
 
+// Tell express to serve static files from 'public' directory
+app.use(express.static("public"));
+
 // Serves the cached image data
 app.get("/image", async (req, res) => {
   try {
@@ -52,27 +55,6 @@ app.get("/image", async (req, res) => {
     console.error("Failed to fetch image:", error);
     res.status(500).send("Error fetching image");
   }
-});
-
-app.get("/", (req, res) => {
-  const html = `
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <title>The project App</title>
-        <style>
-          body { text-align: center; font-family: sans-serif; }
-          img { max-width: 70%; height: auto; border-radius: 8px; }
-        </style>
-      </head>
-      <body>
-        <h1>The project App</h1>
-        <img src="/image" alt="A daily random image">
-        <p>DevOps with Kubernetes 2025</p>
-      </body>
-    </html>
-  `;
-  res.send(html);
 });
 
 app.listen(PORT, () => {
