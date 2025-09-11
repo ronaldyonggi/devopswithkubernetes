@@ -12,16 +12,9 @@ spec:
       labels:
         app: log-output
     spec:
-      volumes:
-      - name: log-storage
-        persistentVolumeClaim:
-          claimName: shared-log-pvc
       containers:
       - name: log-output
-        image: yonggsnap/log-output:2.2
+        image: yonggsnap/log-output:2.3
         env:
         - name: PORT
           value: "3001"
-        volumeMounts:
-        - name: log-storage
-          mountPath: /usr/src/app/files

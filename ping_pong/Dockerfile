@@ -17,10 +17,10 @@ WORKDIR /usr/src/app
 COPY --from=builder /usr/src/app/node_modules ./node_modules
 COPY --from=builder /usr/src/app .  
 
-# RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 
-# RUN chown appuser .
+RUN chown appuser .
 
-# USER appuser
+USER appuser
 
 CMD ["node", "index.js"]
