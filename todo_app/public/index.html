@@ -9,17 +9,79 @@
     <h1>The project App</h1>
     <img src="/image" alt="Random image" width="400" />
 
-    <form>
+    <form id="todo-form">
       <input type="text" name="todo" maxlength="140" />
       <input type="submit" value="Create todo" />
     </form>
 
-    <ul>
+    <ul id="todo-list">
       <li>Learn JavaScript</li>
       <li>Learn React</li>
       <li>Build a project</li>
     </ul>
 
     <p>DevOps with Kubernetes 2025</p>
+    <script>
+      // This function will fetch and display todos
+      const fetchAndRenderTodos = async () => {
+        console.log("Fetching todos...");
+        try {
+          const response = await fetch("/todos");
+          const todos = await response.json();
+
+          console.log("Fetched todos:", todos);
+
+          // 1. Get a reference to the <ul> element
+          const todoList = document.getElementById("todo-list");
+
+          // 2. Clear any existing content in the <ul>
+          todoList.innerHTML = "";
+
+          // 3. Loop through the fetched todos and create list items
+          todos.forEach((todo) => {
+            const listItem = document.createElement("li");
+            listItem.textContent = todo.content;
+            todoList.appendChild(listItem);
+          });
+        } catch (error) {
+          console.error("Error fetching todos:", error);
+        }
+      };
+
+      // This ensures the function runs after the page is loaded
+      window.addEventListener("DOMContentLoaded", fetchAndRenderTodos);
+
+      const form = document.getElementById('todo-form');
+      form.addEventListener('submit', async (event) => {
+        // 1. Prevent default form submission (page reload)
+        event.preventDefault();
+
+        // 2. Get the value from the input field
+        const input = form.querySelector('input[name="todo"]')
+        const content = input.value;
+
+        // Don't submit if input is empty
+        if (!content) return;
+
+
+        // 4. Send a POST request to backend
+        try {
+          const response = await fetch('/todos', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({content})
+          })
+          // Clear the input field for the next todo
+          input.value='';
+
+          // Re-fetch and render updated list
+          fetchAndRenderTodos();
+        } catch (error) {
+          console.error('Error creating todo:', error)
+        }
+      })
+    </script>
   </body>
 </html>

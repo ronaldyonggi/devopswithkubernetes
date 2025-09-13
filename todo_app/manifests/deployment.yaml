@@ -17,7 +17,7 @@ spec:
         emptyDir: {}
       containers:
       - name: todo-app
-        image: yonggsnap/todo-app:1.5
+        image: yonggsnap/todo-app:1.7
         env:
         - name: PORT
           value: "8080"
