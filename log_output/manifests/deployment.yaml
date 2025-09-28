@@ -15,7 +15,19 @@ spec:
     spec:
       containers:
       - name: log-output
-        image: yonggsnap/log-output:2.3
+        image: yonggsnap/log-output:2.4
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/config
         env:
         - name: PORT
           value: "3001"
+        - name: MESSAGE
+          valueFrom:
+            configMapKeyRef:
+              name: log-output-configmap
+              key: MESSAGE
+      volumes:
+      - name: config-volume
+        configMap:
+          name: log-output-configmap
