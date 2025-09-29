@@ -18,10 +18,15 @@ spec:
         emptyDir: {}
       containers:
       - name: todo-app
-        image: yonggsnap/todo-app:1.7
+        image: yonggsnap/todo-app:1.8
         env:
         - name: PORT
           value: "8080"
+        - name: IMAGE_URL
+          valueFrom:
+            configMapKeyRef:
+              name: todo-app-configmap
+              key: IMAGE_URL
         volumeMounts:
         - name: image-cache
           mountPath: /usr/src/app/files

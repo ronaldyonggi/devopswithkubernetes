@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3001;
 
 const INFORMATION_FILE_PATH = path.join("/etc/config", "information.txt");
 
-const PING_PONG_URL = "http://ping-pong-svc:2347/pingpong";
+const PING_PONG_URL = process.env.PING_PONG_URL;
 
 // This route handler is executed for every GET to '/'
 app.get("/", async (req, res) => {

@@ -6,4 +6,5 @@ metadata:
 data:
   information.txt: "this text is from file"
   MESSAGE: "hello world"
+  PING_PONG_URL: "http://ping-pong-svc:2347/pingpong"
 

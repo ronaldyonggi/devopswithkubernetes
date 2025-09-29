@@ -4,7 +4,7 @@ const path = require("path");
 const app = express();
 
 const PORT = process.env.PORT || 3000;
-const IMAGE_URL = "https://picsum.photos/1200";
+const IMAGE_URL = process.env.IMAGE_URL || "https://picsum.photos/1200";
 
 const CACHE_DIR = "/usr/src/app/files";
 const IMAGE_PATH = path.join(CACHE_DIR, "image.jpg");

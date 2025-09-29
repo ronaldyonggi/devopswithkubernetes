@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: log-output
-        image: yonggsnap/log-output:2.4
+        image: yonggsnap/log-output:2.5
         volumeMounts:
         - name: config-volume
           mountPath: /etc/config
@@ -27,6 +27,11 @@ spec:
             configMapKeyRef:
               name: log-output-configmap
               key: MESSAGE
+        - name: PING_PONG_URL
+          valueFrom:
+            configMapKeyRef:
+              name: log-output-configmap
+              key: PING_PONG_URL
       volumes:
       - name: config-volume
         configMap:
