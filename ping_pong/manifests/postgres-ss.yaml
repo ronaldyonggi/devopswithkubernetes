@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  namespace: exercises
+  name: postgres-ss
+spec:
+  selector:
+    matchLabels:
+      app: postgres
+  serviceName: postgres-svc
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+      - name: postgres
+        image: postgres:13
+        ports:
+        - name: postgres
+          containerPort: 5432
+        env:
+        - name: POSTGRES_PASSWORD
+          value: postgres
+        # Create a persistent disk for each pod and make it available at /var/lib/postgresql/data
+        volumeMounts:
+          - name: postgres-data
+            mountPath: /var/lib/postgresql/data
+  volumeClaimTemplates:
+  - metadata:
+      name: postgres-data
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      storageClassName: local-path
+      resources:
+        requests:
+          storage: 100Mi
