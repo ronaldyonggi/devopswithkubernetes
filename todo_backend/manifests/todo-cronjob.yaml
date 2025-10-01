@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  namespace: project
+  name: todo-cronjob
+spec:
+  schedule: "0 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: hello
+            image: curlimages/curl:8.16.0
+            command: ["/bin/sh", "-c"]
+            args:
+              - |
+                URL=$(curl -s -I https://en.wikipedia.org/wiki/Special:Random | grep -i '^location:' | cut -d' ' -f2 | tr -d '\r')
+                if [ -n "$URL" ]; then
+                  curl -X POST -H "Content-Type: application/json" -d "{\"content\": \"Read $URL\"}" http://todo-backend-svc:2345/todos
+                fi
+          restartPolicy: OnFailure
