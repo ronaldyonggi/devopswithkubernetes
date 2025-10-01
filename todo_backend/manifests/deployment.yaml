@@ -15,7 +15,22 @@ spec:
     spec:
       containers:
       - name: todo-backend
-        image: yonggsnap/todo-backend:1.0
+        image: yonggsnap/todo-backend:1.1
         env:
         - name: PORT
           value: "8080"
+        - name: POSTGRES_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: postgres-configmap
+              key: POSTGRES_HOST
+        - name: POSTGRES_USER
+          valueFrom:
+            configMapKeyRef:
+              name: postgres-configmap
+              key: POSTGRES_USER
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: POSTGRES_PASSWORD
