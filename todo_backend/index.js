@@ -45,6 +45,12 @@ app.get("/todos", async (req, res) => {
 app.post("/todos", async (req, res) => {
   try {
     const newTodo = req.body;
+    console.log("Received new todo:", newTodo.content);
+
+    if (newTodo.content.length > 140) {
+      console.log("Todo rejected: content exceeds 140 characters.");
+      return res.status(400).send("Todo content cannot exceed 140 characters.");
+    }
     const insertTodoQuery = `INSERT INTO todos (content) VALUES ($1)`;
     await pool.query(insertTodoQuery, [newTodo.content]);
     res.status(201).send();

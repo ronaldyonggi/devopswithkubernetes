@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: todo-backend
-        image: yonggsnap/todo-backend:1.1
+        image: yonggsnap/todo-backend:1.3
         env:
         - name: PORT
           value: "8080"
